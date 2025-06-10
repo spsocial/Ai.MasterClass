@@ -527,118 +527,76 @@
             margin: 0 auto;
         }
 
-        .portfolio-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-color: transparent;
-        }
-
-        .portfolio-grid {
+        .portfolio-buttons {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
-        @media (min-width: 1200px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1199px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .portfolio-item {
-            border-radius: 15px;
-            overflow: hidden;
+        .portfolio-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-decoration: none;
+            color: white;
+            text-align: center;
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
+            display: block;
         }
 
-        .portfolio-item:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-        }
-
-        .portfolio-item::after {
+        .portfolio-btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, transparent, rgba(102, 126, 234, 0.2));
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
         }
 
-        .portfolio-item:hover::after {
+        .portfolio-btn:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .portfolio-btn:hover::before {
             opacity: 1;
         }
 
-        .portfolio-placeholder {
-            background: rgba(255, 255, 255, 0.1);
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+        .portfolio-btn:hover .btn-arrow {
+            transform: translateX(5px);
         }
 
-        .portfolio-placeholder:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-
-        /* Animation for portfolio items */
-        .portfolio-grid .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
-        .portfolio-grid .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
-        .portfolio-grid .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
-        .portfolio-grid .portfolio-item:nth-child(4) { animation-delay: 0.4s; }
-
-        .portfolio-img {
-            width: 100%;
-            height: auto;
+        .portfolio-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
             display: block;
         }
 
-        .music-player {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .portfolio-btn h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .portfolio-btn p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .btn-arrow {
+            font-size: 1.5rem;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         /* FAQ Section */
@@ -954,82 +912,30 @@
     <section class="portfolio-section">
         <div class="section-header">
             <h2 class="section-title">🎨 ผลงานจากนักเรียน</h2>
-            <p>สร้างสรรค์ด้วย AI ได้จริง ดูผลงานจากนักเรียนของเรา</p>
+            <p>คลิกเพื่อดูผลงาน AI ที่นักเรียนสร้างขึ้น</p>
         </div>
         
-        <div class="portfolio-tabs">
-            <button class="tab-btn active" onclick="showPortfolio('video')">🎬 วิดีโอ</button>
-            <button class="tab-btn" onclick="showPortfolio('image')">🖼️ รูปภาพ</button>
-            <button class="tab-btn" onclick="showPortfolio('music')">🎵 เพลง</button>
-        </div>
-        
-        <div class="portfolio-grid" id="video-portfolio">
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>📹 วิดีโอตัวอย่าง 1</span>
-                    <p>ใส่ YouTube/Video URL</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>📹 วิดีโอตัวอย่าง 2</span>
-                    <p>ใส่ YouTube/Video URL</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>📹 วิดีโอตัวอย่าง 3</span>
-                    <p>ใส่ YouTube/Video URL</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>📹 วิดีโอตัวอย่าง 4</span>
-                    <p>ใส่ YouTube/Video URL</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="portfolio-grid" id="image-portfolio" style="display: none;">
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>🖼️ รูปตัวอย่าง 1</span>
-                    <p>ใส่ URL รูปภาพ</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>🖼️ รูปตัวอย่าง 2</span>
-                    <p>ใส่ URL รูปภาพ</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>🖼️ รูปตัวอย่าง 3</span>
-                    <p>ใส่ URL รูปภาพ</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-placeholder">
-                    <span>🖼️ รูปตัวอย่าง 4</span>
-                    <p>ใส่ URL รูปภาพ</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="portfolio-grid" id="music-portfolio" style="display: none;">
-            <div class="portfolio-item">
-                <div class="music-player">
-                    <span>🎵 เพลงตัวอย่าง 1</span>
-                    <p>AI Generated Music</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="music-player">
-                    <span>🎵 เพลงตัวอย่าง 2</span>
-                    <p>AI Generated Music</p>
-                </div>
-            </div>
+        <div class="portfolio-buttons">
+            <a href="#" class="portfolio-btn" id="videoFolderBtn" target="_blank">
+                <div class="portfolio-icon">🎬</div>
+                <h3>วิดีโอ AI</h3>
+                <p>คลิปสร้างด้วย AI</p>
+                <span class="btn-arrow">→</span>
+            </a>
+            
+            <a href="#" class="portfolio-btn" id="imageFolderBtn" target="_blank">
+                <div class="portfolio-icon">🖼️</div>
+                <h3>รูปภาพ AI</h3>
+                <p>ภาพสร้างด้วย AI</p>
+                <span class="btn-arrow">→</span>
+            </a>
+            
+            <a href="#" class="portfolio-btn" id="musicFolderBtn" target="_blank">
+                <div class="portfolio-icon">🎵</div>
+                <h3>เพลง AI</h3>
+                <p>เพลงสร้างด้วย AI</p>
+                <span class="btn-arrow">→</span>
+            </a>
         </div>
     </section>
 
@@ -1129,7 +1035,7 @@
         <!-- QR Code Section -->
         <div class="qr-section">
             <p style="margin: 2rem 0 1rem; opacity: 0.9;">หรือสแกน QR Code เพื่อเพิ่มเพื่อน</p>
-            <img src="https://img2.pic.in.th/pic/S__17727503.md.jpg" alt="LINE QR Code @social24" class="qr-code">
+            <img src="URL_ของรูป_QR_Code_ที่นี่" alt="LINE QR Code @social24" class="qr-code">
         </div>
 
         <a href="https://line.me/ti/p/@social24" class="cta-button" target="_blank">
@@ -1139,51 +1045,37 @@
 
     <!-- Admin Helper Tool (ซ่อนไว้ ใช้วิธีลับเปิด) -->
     <div id="adminHelper" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.95); padding: 2rem; border-radius: 20px; z-index: 10000; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
-        <h3 style="color: #667eea; margin-bottom: 1rem;">🛠️ Admin Helper Tool</h3>
+        <h3 style="color: #667eea; margin-bottom: 1rem;">🛠️ ตั้งค่าลิงก์ Google Drive</h3>
         
         <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem;">Link (URL/YouTube/Google Drive):</label>
-            <input type="text" id="driveLink" placeholder="วางลิงก์ที่นี่" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
-        </div>
-        
-        <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem;">Type:</label>
+            <label style="display: block; margin-bottom: 0.5rem;">เลือกประเภท:</label>
             <select id="linkType" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
-                <option value="image">รูปภาพ</option>
-                <option value="video">วิดีโอ</option>
-                <option value="qr">QR Code</option>
+                <option value="video">🎬 โฟลเดอร์วิดีโอ</option>
+                <option value="image">🖼️ โฟลเดอร์รูปภาพ</option>
+                <option value="music">🎵 โฟลเดอร์เพลง</option>
+                <option value="qr">📱 QR Code LINE</option>
             </select>
         </div>
         
         <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem;">Position (สำหรับ Portfolio):</label>
-            <select id="itemPosition" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
-                <option value="0">ตำแหน่งที่ 1</option>
-                <option value="1">ตำแหน่งที่ 2</option>
-                <option value="2">ตำแหน่งที่ 3</option>
-                <option value="3">ตำแหน่งที่ 4</option>
-            </select>
+            <label style="display: block; margin-bottom: 0.5rem;">ลิงก์ Google Drive Folder:</label>
+            <input type="text" id="driveLink" placeholder="วางลิงก์โฟลเดอร์ Google Drive ที่นี่" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+            <p style="font-size: 0.75rem; opacity: 0.6; margin-top: 0.5rem;">ตัวอย่าง: https://drive.google.com/drive/folders/xxxxx</p>
         </div>
         
         <div style="display: flex; gap: 1rem;">
-            <button onclick="applyDriveLink()" style="flex: 1; padding: 0.75rem; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 5px; color: white; cursor: pointer;">Apply</button>
-            <button onclick="testDriveLink()" style="flex: 1; padding: 0.75rem; background: #4CAF50; border: none; border-radius: 5px; color: white; cursor: pointer;">Test Link</button>
-            <button onclick="document.getElementById('adminHelper').style.display='none'" style="flex: 1; padding: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer;">Close</button>
+            <button onclick="applyFolderLink()" style="flex: 1; padding: 0.75rem; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 5px; color: white; cursor: pointer;">บันทึก</button>
+            <button onclick="document.getElementById('adminHelper').style.display='none'" style="flex: 1; padding: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer;">ยกเลิก</button>
         </div>
         
-        <div id="convertedResult" style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px; display: none;">
-            <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">Converted URL:</p>
-            <code id="resultUrl" style="word-break: break-all; font-size: 0.75rem;"></code>
-        </div>
-        
-        <!-- Quick Actions -->
-        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2);">
-            <p style="font-size: 0.875rem; margin-bottom: 1rem; opacity: 0.7;">Quick Actions:</p>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <button onclick="showPortfolio('image'); document.getElementById('adminHelper').style.display='none';" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer; font-size: 0.875rem;">📷 ดูรูปภาพ</button>
-                <button onclick="showPortfolio('video'); document.getElementById('adminHelper').style.display='none';" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer; font-size: 0.875rem;">🎬 ดูวิดีโอ</button>
-                <button onclick="showPortfolio('music'); document.getElementById('adminHelper').style.display='none';" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer; font-size: 0.875rem;">🎵 ดูเพลง</button>
-            </div>
+        <div style="margin-top: 2rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 10px;">
+            <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">📌 วิธีสร้างโฟลเดอร์ใน Google Drive:</p>
+            <ol style="font-size: 0.75rem; opacity: 0.8; padding-left: 1.5rem;">
+                <li>สร้างโฟลเดอร์ 3 อัน: วิดีโอ, รูปภาพ, เพลง</li>
+                <li>ใส่ผลงานในแต่ละโฟลเดอร์</li>
+                <li>คลิกขวา > รับลิงก์ > เปลี่ยนเป็น "ทุกคนที่มีลิงก์"</li>
+                <li>Copy ลิงก์มาใส่ที่นี่</li>
+            </ol>
         </div>
     </div>
 
@@ -1254,26 +1146,73 @@
 
         // Portfolio Tabs
         function showPortfolio(type) {
-            // Hide all portfolios
-            document.querySelectorAll('.portfolio-grid').forEach(grid => {
-                grid.style.display = 'none';
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected portfolio
-            document.getElementById(type + '-portfolio').style.display = 'grid';
-            
-            // Add active class to the corresponding tab
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                if (btn.textContent.includes(type === 'video' ? 'วิดีโอ' : type === 'image' ? 'รูปภาพ' : 'เพลง')) {
-                    btn.classList.add('active');
-                }
-            });
+            // Not needed anymore since we're using folder links
+            console.log('Portfolio type:', type);
         }
+
+        // Apply Google Drive Folder Link
+        function applyFolderLink() {
+            const link = document.getElementById('driveLink').value;
+            const type = document.getElementById('linkType').value;
+            
+            if (!link) {
+                alert('กรุณาใส่ลิงก์ Google Drive folder');
+                return;
+            }
+            
+            // Store links in localStorage for persistence
+            if (type === 'video') {
+                localStorage.setItem('videoFolderLink', link);
+                document.getElementById('videoFolderBtn').href = link;
+                alert('✅ บันทึกลิงก์โฟลเดอร์วิดีโอเรียบร้อย!');
+            } else if (type === 'image') {
+                localStorage.setItem('imageFolderLink', link);
+                document.getElementById('imageFolderBtn').href = link;
+                alert('✅ บันทึกลิงก์โฟลเดอร์รูปภาพเรียบร้อย!');
+            } else if (type === 'music') {
+                localStorage.setItem('musicFolderLink', link);
+                document.getElementById('musicFolderBtn').href = link;
+                alert('✅ บันทึกลิงก์โฟลเดอร์เพลงเรียบร้อย!');
+            } else if (type === 'qr') {
+                // Handle QR Code separately
+                const convertedLink = convertGoogleDriveLink(link, 'image');
+                document.querySelector('.qr-code').src = convertedLink;
+                alert('✅ อัพเดท QR Code เรียบร้อย!');
+            }
+            
+            // Close admin helper
+            setTimeout(() => {
+                document.getElementById('adminHelper').style.display = 'none';
+            }, 1000);
+        }
+
+        // Load saved links on page load
+        window.addEventListener('load', function() {
+            // Load saved folder links
+            const videoLink = localStorage.getItem('videoFolderLink');
+            const imageLink = localStorage.getItem('imageFolderLink');
+            const musicLink = localStorage.getItem('musicFolderLink');
+            
+            if (videoLink) {
+                document.getElementById('videoFolderBtn').href = videoLink;
+            }
+            if (imageLink) {
+                document.getElementById('imageFolderBtn').href = imageLink;
+            }
+            if (musicLink) {
+                document.getElementById('musicFolderBtn').href = musicLink;
+            }
+            
+            // Add click tracking
+            document.querySelectorAll('.portfolio-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.href === '#' || this.href === window.location.href + '#') {
+                        alert('⚠️ ยังไม่ได้ตั้งค่าลิงก์โฟลเดอร์\n\nวิธีตั้งค่า:\n1. กด ... (3 จุด)\n2. เลือกประเภท\n3. ใส่ลิงก์โฟลเดอร์ Google Drive\n4. บันทึก');
+                        return false;
+                    }
+                });
+            });
+        });
 
         // FAQ Toggle
         function toggleFAQ(element) {
@@ -1364,7 +1303,7 @@
         
         setInterval(rotateText, 2000);
 
-        // Google Drive Link Converter
+        // Google Drive Link Converter (for QR Code only)
         function convertGoogleDriveLink(shareLink, type = 'image') {
             // Extract file ID from various Google Drive URL formats
             let fileId = '';
@@ -1377,139 +1316,47 @@
                 fileId = shareLink.split('file/d/')[1].split('/')[0];
             }
             
-            if (fileId) {
-                if (type === 'image') {
-                    // Try multiple formats for better compatibility
-                    return `https://drive.google.com/uc?export=view&id=${fileId}`;
-                    // Alternative: return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
-                } else if (type === 'video') {
-                    return `https://drive.google.com/file/d/${fileId}/preview`;
-                }
+            if (fileId && type === 'image') {
+                return `https://drive.google.com/uc?export=view&id=${fileId}`;
             }
             
             return shareLink; // Return original if can't convert
         }
 
-        // Helper function to update portfolio with Google Drive links
-        function updatePortfolioWithDriveLink(itemIndex, driveLink, type = 'image') {
-            const convertedLink = convertGoogleDriveLink(driveLink, type);
-            console.log('🔗 Converting:', driveLink);
-            console.log('✅ Converted to:', convertedLink);
-            
-            if (type === 'image') {
-                const portfolioItems = document.querySelectorAll('#image-portfolio .portfolio-item');
-                if (portfolioItems[itemIndex]) {
-                    // First, make sure we're in the image tab
-                    showPortfolio('image');
-                    
-                    portfolioItems[itemIndex].innerHTML = `
-                        <img src="${convertedLink}" 
-                             alt="AI Generated Image" 
-                             class="portfolio-img"
-                             style="width: 100%; height: auto; display: block;"
-                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'portfolio-placeholder\\'><span>❌ ไม่สามารถโหลดรูปได้</span><p>ตรวจสอบการตั้งค่า Google Drive</p></div>';"
-                             onload="console.log('✅ รูปโหลดสำเร็จ!');">`;
-                    
-                    alert('✅ เพิ่มรูปเรียบร้อย!\n\nหากไม่เห็นรูป:\n1. ตรวจสอบว่าเลือกแท็บ "รูปภาพ"\n2. ตรวจสอบการตั้งค่า Google Drive');
-                }
-            } else if (type === 'video') {
-                const portfolioItems = document.querySelectorAll('#video-portfolio .portfolio-item');
-                if (portfolioItems[itemIndex]) {
-                    portfolioItems[itemIndex].innerHTML = `
-                        <iframe src="${convertedLink}" 
-                                width="100%" 
-                                height="300"
-                                frameborder="0"
-                                allow="autoplay">
-                        </iframe>`;
-                }
-            }
-        }
-
-        // Admin Helper Tool Functions
-        function applyDriveLink() {
+        // Apply Google Drive Folder Link
+        function applyFolderLink() {
             const link = document.getElementById('driveLink').value;
             const type = document.getElementById('linkType').value;
-            const position = document.getElementById('itemPosition').value;
             
             if (!link) {
-                alert('กรุณาใส่ Google Drive link');
+                alert('กรุณาใส่ลิงก์ Google Drive folder');
                 return;
             }
             
-            console.log('🚀 Applying link:', {link, type, position});
-            
-            if (type === 'qr') {
-                // Update QR Code
+            // Store links in localStorage for persistence
+            if (type === 'video') {
+                localStorage.setItem('videoFolderLink', link);
+                document.getElementById('videoFolderBtn').href = link;
+                alert('✅ บันทึกลิงก์โฟลเดอร์วิดีโอเรียบร้อย!');
+            } else if (type === 'image') {
+                localStorage.setItem('imageFolderLink', link);
+                document.getElementById('imageFolderBtn').href = link;
+                alert('✅ บันทึกลิงก์โฟลเดอร์รูปภาพเรียบร้อย!');
+            } else if (type === 'music') {
+                localStorage.setItem('musicFolderLink', link);
+                document.getElementById('musicFolderBtn').href = link;
+                alert('✅ บันทึกลิงก์โฟลเดอร์เพลงเรียบร้อย!');
+            } else if (type === 'qr') {
+                // Handle QR Code separately
                 const convertedLink = convertGoogleDriveLink(link, 'image');
-                const qrImg = document.querySelector('.qr-code');
-                if (qrImg) {
-                    qrImg.src = convertedLink;
-                    qrImg.onerror = function() {
-                        alert('❌ ไม่สามารถโหลด QR Code ได้\n\nตรวจสอบ:\n1. การตั้งค่า Google Drive\n2. ลิงก์ถูกต้องหรือไม่');
-                    };
-                    qrImg.onload = function() {
-                        console.log('✅ QR Code โหลดสำเร็จ!');
-                    };
-                }
-                
-                // Show result
-                document.getElementById('convertedResult').style.display = 'block';
-                document.getElementById('resultUrl').textContent = convertedLink;
-                
-                // Close helper after success
-                setTimeout(() => {
-                    document.getElementById('adminHelper').style.display = 'none';
-                }, 2000);
-            } else {
-                // Update portfolio
-                updatePortfolioWithDriveLink(parseInt(position), link, type);
-                
-                // Show result
-                const convertedLink = convertGoogleDriveLink(link, type);
-                document.getElementById('convertedResult').style.display = 'block';
-                document.getElementById('resultUrl').textContent = convertedLink;
-                
-                // Auto switch to the correct tab
-                if (type === 'image') {
-                    showPortfolio('image');
-                } else if (type === 'video') {
-                    showPortfolio('video');
-                }
-                
-                // Close helper after success
-                setTimeout(() => {
-                    document.getElementById('adminHelper').style.display = 'none';
-                }, 2000);
-            }
-        }
-
-        // Test Drive Link function
-        function testDriveLink() {
-            const link = document.getElementById('driveLink').value;
-            const type = document.getElementById('linkType').value;
-            
-            if (!link) {
-                alert('กรุณาใส่ Google Drive link ก่อน');
-                return;
+                document.querySelector('.qr-code').src = convertedLink;
+                alert('✅ อัพเดท QR Code เรียบร้อย!');
             }
             
-            const convertedLink = convertGoogleDriveLink(link, type === 'video' ? 'video' : 'image');
-            
-            // Open in new tab to test
-            window.open(convertedLink, '_blank');
-            
-            // Also test with Image object
-            if (type !== 'video') {
-                const testImg = new Image();
-                testImg.onload = () => {
-                    alert('✅ ลิงก์ใช้งานได้!\n\nรูปโหลดสำเร็จ สามารถใช้งานได้');
-                };
-                testImg.onerror = () => {
-                    alert('❌ ลิงก์มีปัญหา!\n\nกรุณาตรวจสอบ:\n1. ตั้งค่า Google Drive เป็น "ทุกคนที่มีลิงก์"\n2. ตรวจสอบว่าลิงก์ถูกต้อง\n\nลองใช้ format นี้:\nhttps://drive.google.com/file/d/FILE_ID/view?usp=sharing');
-                };
-                testImg.src = convertedLink;
-            }
+            // Close admin helper
+            setTimeout(() => {
+                document.getElementById('adminHelper').style.display = 'none';
+            }, 1000);
         }
 
         // Secret keyboard shortcuts
