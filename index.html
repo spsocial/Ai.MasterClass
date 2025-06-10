@@ -324,6 +324,28 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
         }
 
+        /* QR Code Styles */
+        .qr-section {
+            margin: 2rem 0;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .qr-code:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            border-color: rgba(102, 126, 234, 0.6);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .packages-grid {
@@ -462,6 +484,12 @@
             <div class="contact-item">
                 <span>👨‍🏫 ครูฟิล์ม (Bancha Wungsra)</span>
             </div>
+        </div>
+
+        <!-- QR Code Section -->
+        <div class="qr-section">
+            <p style="margin: 2rem 0 1rem; opacity: 0.9;">หรือสแกน QR Code เพื่อเพิ่มเพื่อน</p>
+            <img src="https://img2.pic.in.th/pic/S__17727503.md.jpg" alt="LINE QR Code @social24" class="qr-code">
         </div>
 
         <a href="https://line.me/ti/p/@social24" class="cta-button" target="_blank">
