@@ -405,9 +405,21 @@
 
         .reviews-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+        }
+
+        @media (min-width: 1200px) {
+            .reviews-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .reviews-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .review-card {
@@ -417,12 +429,38 @@
             padding: 2rem;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .review-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
         }
+
+        .review-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Add subtle animation to reviews */
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.2s; }
+        .review-card:nth-child(3) { animation-delay: 0.3s; }
+        .review-card:nth-child(4) { animation-delay: 0.4s; }
 
         .stars {
             font-size: 1.25rem;
@@ -446,6 +484,18 @@
             height: 50px;
             border-radius: 50%;
             border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.2);
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
         }
 
         .reviewer-name {
@@ -799,7 +849,7 @@
                 <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p class="review-text">"คอร์สนี้เปลี่ยนชีวิตผมจริงๆ จากไม่รู้อะไรเลย ตอนนี้ทำคลิปได้คุณภาพระดับมืออาชีพ รายได้เพิ่มขึ้น 300%!"</p>
                 <div class="reviewer">
-                    <img src="https://via.placeholder.com/60" alt="reviewer" class="reviewer-img">
+                    <div class="reviewer-avatar">👨‍💼</div>
                     <div>
                         <p class="reviewer-name">คุณสมชาย</p>
                         <p class="reviewer-role">Content Creator</p>
@@ -811,7 +861,7 @@
                 <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p class="review-text">"ครูฟิล์มสอนละเอียดมาก ตอบคำถามทุกข้อสงสัย ที่สำคัญเทคนิคที่ได้ไปใช้ได้จริง ประหยัดเวลาไปได้เยอะมาก"</p>
                 <div class="reviewer">
-                    <img src="https://via.placeholder.com/60" alt="reviewer" class="reviewer-img">
+                    <div class="reviewer-avatar">👩‍💻</div>
                     <div>
                         <p class="reviewer-name">คุณมาลี</p>
                         <p class="reviewer-role">Marketing Manager</p>
@@ -823,10 +873,22 @@
                 <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p class="review-text">"เรียนมาหลายคอร์สแล้ว คอร์สนี้คุ้มที่สุด! ได้ทั้งความรู้และเทคนิคลับที่หาไม่ได้จากที่อื่น แถมมี Support ตลอด"</p>
                 <div class="reviewer">
-                    <img src="https://via.placeholder.com/60" alt="reviewer" class="reviewer-img">
+                    <div class="reviewer-avatar">👨‍🎨</div>
                     <div>
                         <p class="reviewer-name">คุณวิชัย</p>
                         <p class="reviewer-role">Freelancer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"จากคนที่ไม่มีพื้นฐานเลย ตอนนี้สามารถรับงานทำคลิป AI ได้แล้ว ขอบคุณครูฟิล์มที่อดทนสอนจนเราทำได้จริงๆ"</p>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">👩‍🎓</div>
+                    <div>
+                        <p class="reviewer-name">คุณสุภาพร</p>
+                        <p class="reviewer-role">นักศึกษา / Freelancer</p>
                     </div>
                 </div>
             </div>
@@ -869,13 +931,22 @@
         
         <div class="portfolio-grid" id="image-portfolio" style="display: none;">
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x300" alt="AI Generated Image" class="portfolio-img">
+                <div class="portfolio-placeholder">
+                    <span>🖼️ รูปตัวอย่าง 1</span>
+                    <p>ใส่ URL รูปภาพ</p>
+                </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x300" alt="AI Generated Image" class="portfolio-img">
+                <div class="portfolio-placeholder">
+                    <span>🖼️ รูปตัวอย่าง 2</span>
+                    <p>ใส่ URL รูปภาพ</p>
+                </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x300" alt="AI Generated Image" class="portfolio-img">
+                <div class="portfolio-placeholder">
+                    <span>🖼️ รูปตัวอย่าง 3</span>
+                    <p>ใส่ URL รูปภาพ</p>
+                </div>
             </div>
         </div>
         
@@ -991,7 +1062,7 @@
         <!-- QR Code Section -->
         <div class="qr-section">
             <p style="margin: 2rem 0 1rem; opacity: 0.9;">หรือสแกน QR Code เพื่อเพิ่มเพื่อน</p>
-            <img src="https://img2.pic.in.th/pic/S__17727503.md.jpg" alt="LINE QR Code @social24" class="qr-code">
+            <img src="URL_ของรูป_QR_Code_ที่นี่" alt="LINE QR Code @social24" class="qr-code">
         </div>
 
         <a href="https://line.me/ti/p/@social24" class="cta-button" target="_blank">
@@ -1028,6 +1099,7 @@
         
         <div style="display: flex; gap: 1rem;">
             <button onclick="applyDriveLink()" style="flex: 1; padding: 0.75rem; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 5px; color: white; cursor: pointer;">Apply</button>
+            <button onclick="testDriveLink()" style="flex: 1; padding: 0.75rem; background: #4CAF50; border: none; border-radius: 5px; color: white; cursor: pointer;">Test Link</button>
             <button onclick="document.getElementById('adminHelper').style.display='none'" style="flex: 1; padding: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer;">Close</button>
         </div>
         
@@ -1117,8 +1189,12 @@
             // Show selected portfolio
             document.getElementById(type + '-portfolio').style.display = 'grid';
             
-            // Add active class to clicked tab
-            event.target.classList.add('active');
+            // Add active class to the corresponding tab
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.textContent.includes(type === 'video' ? 'วิดีโอ' : type === 'image' ? 'รูปภาพ' : 'เพลง')) {
+                    btn.classList.add('active');
+                }
+            });
         }
 
         // FAQ Toggle
@@ -1219,11 +1295,15 @@
                 fileId = shareLink.split('/d/')[1].split('/')[0];
             } else if (shareLink.includes('id=')) {
                 fileId = shareLink.split('id=')[1].split('&')[0];
+            } else if (shareLink.includes('file/d/')) {
+                fileId = shareLink.split('file/d/')[1].split('/')[0];
             }
             
             if (fileId) {
                 if (type === 'image') {
+                    // Try multiple formats for better compatibility
                     return `https://drive.google.com/uc?export=view&id=${fileId}`;
+                    // Alternative: return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
                 } else if (type === 'video') {
                     return `https://drive.google.com/file/d/${fileId}/preview`;
                 }
@@ -1235,11 +1315,24 @@
         // Helper function to update portfolio with Google Drive links
         function updatePortfolioWithDriveLink(itemIndex, driveLink, type = 'image') {
             const convertedLink = convertGoogleDriveLink(driveLink, type);
+            console.log('🔗 Converting:', driveLink);
+            console.log('✅ Converted to:', convertedLink);
             
             if (type === 'image') {
                 const portfolioItems = document.querySelectorAll('#image-portfolio .portfolio-item');
                 if (portfolioItems[itemIndex]) {
-                    portfolioItems[itemIndex].innerHTML = `<img src="${convertedLink}" alt="AI Generated Image" class="portfolio-img">`;
+                    // First, make sure we're in the image tab
+                    showPortfolio('image');
+                    
+                    portfolioItems[itemIndex].innerHTML = `
+                        <img src="${convertedLink}" 
+                             alt="AI Generated Image" 
+                             class="portfolio-img"
+                             style="width: 100%; height: auto; display: block;"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'portfolio-placeholder\\'><span>❌ ไม่สามารถโหลดรูปได้</span><p>ตรวจสอบการตั้งค่า Google Drive</p></div>';"
+                             onload="console.log('✅ รูปโหลดสำเร็จ!');">`;
+                    
+                    alert('✅ เพิ่มรูปเรียบร้อย!\n\nหากไม่เห็นรูป:\n1. ตรวจสอบว่าเลือกแท็บ "รูปภาพ"\n2. ตรวจสอบการตั้งค่า Google Drive');
                 }
             } else if (type === 'video') {
                 const portfolioItems = document.querySelectorAll('#video-portfolio .portfolio-item');
@@ -1266,14 +1359,30 @@
                 return;
             }
             
+            console.log('🚀 Applying link:', {link, type, position});
+            
             if (type === 'qr') {
                 // Update QR Code
                 const convertedLink = convertGoogleDriveLink(link, 'image');
-                document.querySelector('.qr-code').src = convertedLink;
+                const qrImg = document.querySelector('.qr-code');
+                if (qrImg) {
+                    qrImg.src = convertedLink;
+                    qrImg.onerror = function() {
+                        alert('❌ ไม่สามารถโหลด QR Code ได้\n\nตรวจสอบ:\n1. การตั้งค่า Google Drive\n2. ลิงก์ถูกต้องหรือไม่');
+                    };
+                    qrImg.onload = function() {
+                        console.log('✅ QR Code โหลดสำเร็จ!');
+                    };
+                }
                 
                 // Show result
                 document.getElementById('convertedResult').style.display = 'block';
                 document.getElementById('resultUrl').textContent = convertedLink;
+                
+                // Close helper after success
+                setTimeout(() => {
+                    document.getElementById('adminHelper').style.display = 'none';
+                }, 2000);
             } else {
                 // Update portfolio
                 updatePortfolioWithDriveLink(parseInt(position), link, type);
@@ -1282,6 +1391,46 @@
                 const convertedLink = convertGoogleDriveLink(link, type);
                 document.getElementById('convertedResult').style.display = 'block';
                 document.getElementById('resultUrl').textContent = convertedLink;
+                
+                // Auto switch to the correct tab
+                if (type === 'image') {
+                    showPortfolio('image');
+                } else if (type === 'video') {
+                    showPortfolio('video');
+                }
+                
+                // Close helper after success
+                setTimeout(() => {
+                    document.getElementById('adminHelper').style.display = 'none';
+                }, 2000);
+            }
+        }
+
+        // Test Drive Link function
+        function testDriveLink() {
+            const link = document.getElementById('driveLink').value;
+            const type = document.getElementById('linkType').value;
+            
+            if (!link) {
+                alert('กรุณาใส่ Google Drive link ก่อน');
+                return;
+            }
+            
+            const convertedLink = convertGoogleDriveLink(link, type === 'video' ? 'video' : 'image');
+            
+            // Open in new tab to test
+            window.open(convertedLink, '_blank');
+            
+            // Also test with Image object
+            if (type !== 'video') {
+                const testImg = new Image();
+                testImg.onload = () => {
+                    alert('✅ ลิงก์ใช้งานได้!\n\nรูปโหลดสำเร็จ สามารถใช้งานได้');
+                };
+                testImg.onerror = () => {
+                    alert('❌ ลิงก์มีปัญหา!\n\nกรุณาตรวจสอบ:\n1. ตั้งค่า Google Drive เป็น "ทุกคนที่มีลิงก์"\n2. ตรวจสอบว่าลิงก์ถูกต้อง\n\nลองใช้ format นี้:\nhttps://drive.google.com/file/d/FILE_ID/view?usp=sharing');
+                };
+                testImg.src = convertedLink;
             }
         }
 
