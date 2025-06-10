@@ -363,6 +363,324 @@
             .subtitle {
                 font-size: 1.125rem;
             }
+
+            .reviews-container {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 1rem;
+            }
+
+            .countdown-item span {
+                font-size: 2rem;
+            }
+
+            .chat-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chat-button {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .stars {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .reviewer-role {
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: transparent;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 1.5rem;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .music-player {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Promotion Section */
+        .promotion-section {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border-radius: 30px;
+            max-width: 1000px;
+            margin: 4rem auto;
+            text-align: center;
+        }
+
+        .promo-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .promo-text {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            min-width: 100px;
+        }
+
+        .countdown-item span {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .countdown-item p {
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .chat-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            animation: pulse 2s infinite;
         }
 
         /* Section headers */
@@ -469,6 +787,190 @@
         </div>
     </section>
 
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="section-header">
+            <h2 class="section-title">🌟 เสียงจากนักเรียนของเรา</h2>
+            <p>ความสำเร็จที่พิสูจน์ได้จริง</p>
+        </div>
+        
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"คอร์สนี้เปลี่ยนชีวิตผมจริงๆ จากไม่รู้อะไรเลย ตอนนี้ทำคลิปได้คุณภาพระดับมืออาชีพ รายได้เพิ่มขึ้น 300%!"</p>
+                <div class="reviewer">
+                    <img src="https://via.placeholder.com/60" alt="reviewer" class="reviewer-img">
+                    <div>
+                        <p class="reviewer-name">คุณสมชาย</p>
+                        <p class="reviewer-role">Content Creator</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"ครูฟิล์มสอนละเอียดมาก ตอบคำถามทุกข้อสงสัย ที่สำคัญเทคนิคที่ได้ไปใช้ได้จริง ประหยัดเวลาไปได้เยอะมาก"</p>
+                <div class="reviewer">
+                    <img src="https://via.placeholder.com/60" alt="reviewer" class="reviewer-img">
+                    <div>
+                        <p class="reviewer-name">คุณมาลี</p>
+                        <p class="reviewer-role">Marketing Manager</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="review-card">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"เรียนมาหลายคอร์สแล้ว คอร์สนี้คุ้มที่สุด! ได้ทั้งความรู้และเทคนิคลับที่หาไม่ได้จากที่อื่น แถมมี Support ตลอด"</p>
+                <div class="reviewer">
+                    <img src="https://via.placeholder.com/60" alt="reviewer" class="reviewer-img">
+                    <div>
+                        <p class="reviewer-name">คุณวิชัย</p>
+                        <p class="reviewer-role">Freelancer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="section-header">
+            <h2 class="section-title">🎨 ผลงานจากนักเรียน</h2>
+            <p>สร้างสรรค์ด้วย AI ได้จริง ดูผลงานจากนักเรียนของเรา</p>
+        </div>
+        
+        <div class="portfolio-tabs">
+            <button class="tab-btn active" onclick="showPortfolio('video')">🎬 วิดีโอ</button>
+            <button class="tab-btn" onclick="showPortfolio('image')">🖼️ รูปภาพ</button>
+            <button class="tab-btn" onclick="showPortfolio('music')">🎵 เพลง</button>
+        </div>
+        
+        <div class="portfolio-grid" id="video-portfolio">
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder">
+                    <span>📹 วิดีโอตัวอย่าง 1</span>
+                    <p>ใส่ YouTube/Video URL</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder">
+                    <span>📹 วิดีโอตัวอย่าง 2</span>
+                    <p>ใส่ YouTube/Video URL</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-placeholder">
+                    <span>📹 วิดีโอตัวอย่าง 3</span>
+                    <p>ใส่ YouTube/Video URL</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="portfolio-grid" id="image-portfolio" style="display: none;">
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x300" alt="AI Generated Image" class="portfolio-img">
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x300" alt="AI Generated Image" class="portfolio-img">
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x300" alt="AI Generated Image" class="portfolio-img">
+            </div>
+        </div>
+        
+        <div class="portfolio-grid" id="music-portfolio" style="display: none;">
+            <div class="portfolio-item">
+                <div class="music-player">
+                    <span>🎵 เพลงตัวอย่าง 1</span>
+                    <p>AI Generated Music</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="music-player">
+                    <span>🎵 เพลงตัวอย่าง 2</span>
+                    <p>AI Generated Music</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2 class="section-title">❓ คำถามที่พบบ่อย</h2>
+            <p>ข้อสงสัยที่หลายคนอยากรู้</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>ไม่มีพื้นฐานเลย เรียนได้ไหม?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ได้แน่นอนครับ! คอร์สนี้ออกแบบมาสำหรับผู้เริ่มต้นโดยเฉพาะ ครูฟิล์มจะสอนตั้งแต่พื้นฐาน พาทำทีละขั้นตอน จนกว่าจะทำได้เองอย่างมั่นใจ</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>ใช้เวลาเรียนนานแค่ไหน?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ขึ้นอยู่กับแพ็คเกจที่เลือก โดยเฉลี่ย 2-4 สัปดาห์ก็สามารถเริ่มทำผลงานได้แล้ว แต่คอร์สไม่มีหมดอายุ เรียนซ้ำได้ตลอด</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>ต้องมีคอมสเปคแรงมากไหม?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>ไม่จำเป็นครับ! AI Tools ส่วนใหญ่ทำงานบน Cloud ใช้คอมทั่วไปก็เรียนได้ แค่มีอินเทอร์เน็ตที่เสถียรก็พอ</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>หลังเรียนจบมี Support ไหม?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>มีครับ! มีกลุ่ม Community สำหรับถามตอบ และครูฟิล์มคอย Support ตลอด อัพเดทเทคนิคใหม่ๆ ให้ฟรีอีกด้วย</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Timer -->
+    <section class="promotion-section">
+        <div class="promo-container">
+            <h2 class="promo-title">🎉 โปรโมชั่นพิเศษ!</h2>
+            <p class="promo-text">ลด 20% ทุกคอร์ส เหลือเวลาอีก</p>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <p>วัน</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <p>ชั่วโมง</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <p>นาที</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <p>วินาที</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact">
         <h2 class="section-title">พร้อมเริ่มต้นแล้วใช่ไหม?</h2>
@@ -489,13 +991,59 @@
         <!-- QR Code Section -->
         <div class="qr-section">
             <p style="margin: 2rem 0 1rem; opacity: 0.9;">หรือสแกน QR Code เพื่อเพิ่มเพื่อน</p>
-            <img src="https://img2.pic.in.th/pic/S__17727503.md.jpg" alt="LINE QR Code @social24" class="qr-code">
+            <img src="URL_ของรูป_QR_Code_ที่นี่" alt="LINE QR Code @social24" class="qr-code">
         </div>
 
         <a href="https://line.me/ti/p/@social24" class="cta-button" target="_blank">
             สมัครเรียนทันที 🚀
         </a>
     </section>
+
+    <!-- Admin Helper Tool (ซ่อนไว้ แสดงเมื่อกด Ctrl+Shift+A) -->
+    <div id="adminHelper" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); padding: 2rem; border-radius: 20px; z-index: 10000; max-width: 500px; width: 90%;">
+        <h3 style="color: #667eea; margin-bottom: 1rem;">🛠️ Admin Helper Tool</h3>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem;">Google Drive Link:</label>
+            <input type="text" id="driveLink" placeholder="วาง Google Drive link ที่นี่" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem;">Type:</label>
+            <select id="linkType" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+                <option value="image">รูปภาพ</option>
+                <option value="video">วิดีโอ</option>
+                <option value="qr">QR Code</option>
+            </select>
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem;">Position (สำหรับ Portfolio):</label>
+            <select id="itemPosition" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+                <option value="0">ตำแหน่งที่ 1</option>
+                <option value="1">ตำแหน่งที่ 2</option>
+                <option value="2">ตำแหน่งที่ 3</option>
+            </select>
+        </div>
+        
+        <div style="display: flex; gap: 1rem;">
+            <button onclick="applyDriveLink()" style="flex: 1; padding: 0.75rem; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 5px; color: white; cursor: pointer;">Apply</button>
+            <button onclick="document.getElementById('adminHelper').style.display='none'" style="flex: 1; padding: 0.75rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer;">Close</button>
+        </div>
+        
+        <div id="convertedResult" style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px; display: none;">
+            <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">Converted URL:</p>
+            <code id="resultUrl" style="word-break: break-all; font-size: 0.75rem;"></code>
+        </div>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="openChat()">
+            💬
+            <span class="chat-badge">1</span>
+        </button>
+    </div>
 
     <script>
         // Create floating particles
@@ -554,6 +1102,84 @@
         // Initialize particles on load
         window.addEventListener('load', createParticles);
 
+        // Portfolio Tabs
+        function showPortfolio(type) {
+            // Hide all portfolios
+            document.querySelectorAll('.portfolio-grid').forEach(grid => {
+                grid.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected portfolio
+            document.getElementById(type + '-portfolio').style.display = 'grid';
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const allFaqs = document.querySelectorAll('.faq-item');
+            
+            // Close all other FAQs
+            allFaqs.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+        }
+
+        // Countdown Timer
+        function startCountdown() {
+            // Set end date (7 days from now)
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 7);
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.querySelector('.countdown').innerHTML = '<p style="font-size: 2rem;">โปรโมชั่นสิ้นสุดแล้ว</p>';
+                }
+            }
+            
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+        }
+
+        // Start countdown on load
+        window.addEventListener('load', startCountdown);
+
+        // Chat Widget
+        function openChat() {
+            // Remove badge when clicked
+            const badge = document.querySelector('.chat-badge');
+            if (badge) badge.style.display = 'none';
+            
+            // Open LINE chat
+            window.open('https://line.me/ti/p/@social24', '_blank');
+        }
+
         // Add hover effect to package cards
         document.querySelectorAll('.package-card').forEach(card => {
             card.addEventListener('mouseenter', function(e) {
@@ -583,6 +1209,95 @@
         }
         
         setInterval(rotateText, 2000);
+
+        // Google Drive Link Converter
+        function convertGoogleDriveLink(shareLink, type = 'image') {
+            // Extract file ID from various Google Drive URL formats
+            let fileId = '';
+            
+            if (shareLink.includes('/d/')) {
+                fileId = shareLink.split('/d/')[1].split('/')[0];
+            } else if (shareLink.includes('id=')) {
+                fileId = shareLink.split('id=')[1].split('&')[0];
+            }
+            
+            if (fileId) {
+                if (type === 'image') {
+                    return `https://drive.google.com/uc?export=view&id=${fileId}`;
+                } else if (type === 'video') {
+                    return `https://drive.google.com/file/d/${fileId}/preview`;
+                }
+            }
+            
+            return shareLink; // Return original if can't convert
+        }
+
+        // Helper function to update portfolio with Google Drive links
+        function updatePortfolioWithDriveLink(itemIndex, driveLink, type = 'image') {
+            const convertedLink = convertGoogleDriveLink(driveLink, type);
+            
+            if (type === 'image') {
+                const portfolioItems = document.querySelectorAll('#image-portfolio .portfolio-item');
+                if (portfolioItems[itemIndex]) {
+                    portfolioItems[itemIndex].innerHTML = `<img src="${convertedLink}" alt="AI Generated Image" class="portfolio-img">`;
+                }
+            } else if (type === 'video') {
+                const portfolioItems = document.querySelectorAll('#video-portfolio .portfolio-item');
+                if (portfolioItems[itemIndex]) {
+                    portfolioItems[itemIndex].innerHTML = `
+                        <iframe src="${convertedLink}" 
+                                width="100%" 
+                                height="300"
+                                frameborder="0"
+                                allow="autoplay">
+                        </iframe>`;
+                }
+            }
+        }
+
+        // Admin Helper Tool Functions
+        function applyDriveLink() {
+            const link = document.getElementById('driveLink').value;
+            const type = document.getElementById('linkType').value;
+            const position = document.getElementById('itemPosition').value;
+            
+            if (!link) {
+                alert('กรุณาใส่ Google Drive link');
+                return;
+            }
+            
+            if (type === 'qr') {
+                // Update QR Code
+                const convertedLink = convertGoogleDriveLink(link, 'image');
+                document.querySelector('.qr-code').src = convertedLink;
+                
+                // Show result
+                document.getElementById('convertedResult').style.display = 'block';
+                document.getElementById('resultUrl').textContent = convertedLink;
+            } else {
+                // Update portfolio
+                updatePortfolioWithDriveLink(parseInt(position), link, type);
+                
+                // Show result
+                const convertedLink = convertGoogleDriveLink(link, type);
+                document.getElementById('convertedResult').style.display = 'block';
+                document.getElementById('resultUrl').textContent = convertedLink;
+            }
+        }
+
+        // Keyboard shortcut for Admin Helper (Ctrl+Shift+A)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                const helper = document.getElementById('adminHelper');
+                helper.style.display = helper.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+
+        // Quick Instructions in Console
+        console.log('%c🛠️ Admin Helper Tool', 'color: #667eea; font-size: 20px; font-weight: bold;');
+        console.log('%cกด Ctrl+Shift+A เพื่อเปิด Helper Tool', 'color: #764ba2; font-size: 14px;');
+        console.log('%cหรือใช้คำสั่ง: updatePortfolioWithDriveLink(index, "google-drive-link", "type")', 'color: #764ba2; font-size: 14px;');
     </script>
 </body>
 </html>
