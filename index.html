@@ -402,6 +402,12 @@
             }
         }
 
+        /* Admin Button Styles */
+        #adminBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
         /* Reviews Section */
         .reviews-section {
             padding: 4rem 2rem;
@@ -988,7 +994,7 @@
             <div class="portfolio-item">
                 <div class="portfolio-placeholder">
                     <span>🖼️ รูปตัวอย่าง 1</span>
-                    <p>https://drive.google.com/file/d/1pNK2Dt_JjB7RpAqltErnpG4vif_BtjVN/view</p>
+                    <p>ใส่ URL รูปภาพ</p>
                 </div>
             </div>
             <div class="portfolio-item">
@@ -1131,13 +1137,13 @@
         </a>
     </section>
 
-    <!-- Admin Helper Tool (ซ่อนไว้ แสดงเมื่อกด Ctrl+Shift+A) -->
-    <div id="adminHelper" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.9); padding: 2rem; border-radius: 20px; z-index: 10000; max-width: 500px; width: 90%;">
+    <!-- Admin Helper Tool (ซ่อนไว้ ใช้วิธีลับเปิด) -->
+    <div id="adminHelper" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.95); padding: 2rem; border-radius: 20px; z-index: 10000; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
         <h3 style="color: #667eea; margin-bottom: 1rem;">🛠️ Admin Helper Tool</h3>
         
         <div style="margin-bottom: 1.5rem;">
-            <label style="display: block; margin-bottom: 0.5rem;">Google Drive Link:</label>
-            <input type="text" id="driveLink" placeholder="วาง Google Drive link ที่นี่" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
+            <label style="display: block; margin-bottom: 0.5rem;">Link (URL/YouTube/Google Drive):</label>
+            <input type="text" id="driveLink" placeholder="วางลิงก์ที่นี่" style="width: 100%; padding: 0.5rem; border-radius: 5px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white;">
         </div>
         
         <div style="margin-bottom: 1.5rem;">
@@ -1168,6 +1174,16 @@
         <div id="convertedResult" style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 5px; display: none;">
             <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">Converted URL:</p>
             <code id="resultUrl" style="word-break: break-all; font-size: 0.75rem;"></code>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p style="font-size: 0.875rem; margin-bottom: 1rem; opacity: 0.7;">Quick Actions:</p>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button onclick="showPortfolio('image'); document.getElementById('adminHelper').style.display='none';" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer; font-size: 0.875rem;">📷 ดูรูปภาพ</button>
+                <button onclick="showPortfolio('video'); document.getElementById('adminHelper').style.display='none';" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer; font-size: 0.875rem;">🎬 ดูวิดีโอ</button>
+                <button onclick="showPortfolio('music'); document.getElementById('adminHelper').style.display='none';" style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 5px; color: white; cursor: pointer; font-size: 0.875rem;">🎵 ดูเพลง</button>
+            </div>
         </div>
     </div>
 
@@ -1496,19 +1512,53 @@
             }
         }
 
-        // Keyboard shortcut for Admin Helper (Ctrl+Shift+A)
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-                e.preventDefault();
-                const helper = document.getElementById('adminHelper');
-                helper.style.display = helper.style.display === 'none' ? 'block' : 'none';
+        // Secret keyboard shortcuts
+        // วิธีที่ 1: กด . (จุด) 3 ครั้งติดกัน
+        let dotCount = 0;
+        let dotTimer;
+        document.addEventListener('keypress', function(e) {
+            if (e.key === '.') {
+                dotCount++;
+                clearTimeout(dotTimer);
+                
+                if (dotCount >= 3) {
+                    toggleAdminHelper();
+                    dotCount = 0;
+                }
+                
+                dotTimer = setTimeout(() => {
+                    dotCount = 0;
+                }, 1000);
             }
         });
 
-        // Quick Instructions in Console
-        console.log('%c🛠️ Admin Helper Tool', 'color: #667eea; font-size: 20px; font-weight: bold;');
-        console.log('%cกด Ctrl+Shift+A เพื่อเปิด Helper Tool', 'color: #764ba2; font-size: 14px;');
-        console.log('%cหรือใช้คำสั่ง: updatePortfolioWithDriveLink(index, "google-drive-link", "type")', 'color: #764ba2; font-size: 14px;');
+        // วิธีที่ 2: Konami Code (↑↑↓↓←→←→BA)
+        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    toggleAdminHelper();
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Toggle Admin Helper Function
+        function toggleAdminHelper() {
+            const helper = document.getElementById('adminHelper');
+            helper.style.display = helper.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Quick Instructions in Console (ซ่อนๆ)
+        console.log('%c🔐 Secret Admin Access', 'color: #667eea; font-size: 16px; font-weight: bold;');
+        console.log('%cMethod 1: Type ... (3 dots)', 'color: #764ba2; font-size: 12px;');
+        console.log('%cMethod 2: toggleAdminHelper()', 'color: #764ba2; font-size: 12px;');
+        console.log('%cMethod 3: ↑↑↓↓←→←→BA', 'color: #764ba2; font-size: 12px;');
     </script>
 </body>
 </html>
