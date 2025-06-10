@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คอร์สสอน AI สร้างคอนเทนต์ | วิดีโอ รูปภาพ เพลง</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Background animation */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #667eea 100%);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(240, 147, 251, 0.8)); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .package-card:hover::before {
+            opacity: 1;
+        }
+
+        .package-card.featured {
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: scale(1.05);
+        }
+
+        .package-card.featured .badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+
+        .package-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .package-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .package-features li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+        }
+
+        .bonus {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* AI Tools Section */
+        .tools-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tool-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .tool-badge:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            max-width: 800px;
+            margin: 4rem auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-card.featured {
+                transform: scale(1);
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* Section headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animations -->
+    <div class="bg-animation"></div>
+    <div class="particles"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="ai-badge">🤖 AI Content Creation Master Class</div>
+            <h1>เรียนรู้การสร้างคอนเทนต์ด้วย AI</h1>
+            <p class="subtitle">วิดีโอ • รูปภาพ • เพลง • พากย์เสียง<br>ครบจบในคอร์สเดียว</p>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages">
+        <div class="section-header">
+            <h2 class="section-title">เลือกแพ็คเกจที่เหมาะกับคุณ</h2>
+            <p>จับมือทำทุกขั้นตอนจนเป็น พร้อมเทคนิคลับที่ไม่บอกใคร!</p>
+        </div>
+
+        <div class="packages-grid">
+            <!-- Basic Package -->
+            <div class="package-card">
+                <h3 class="package-title">🎬 Basic Package</h3>
+                <p class="package-price">฿2,999</p>
+                <ul class="package-features">
+                    <li>เทคนิคทำคลิปด้วย AI</li>
+                    <li>การพากย์เสียงด้วย AI</li>
+                    <li>การใช้ Veo 3 & Kling AI</li>
+                    <li>การตัดต่อด้วย CapCut</li>
+                    <li>Support ตลอดคอร์ส</li>
+                </ul>
+            </div>
+
+            <!-- Pro Package -->
+            <div class="package-card featured">
+                <div class="badge">🔥 ยอดนิยม</div>
+                <h3 class="package-title">🎨 Pro Package</h3>
+                <p class="package-price">฿3,999</p>
+                <ul class="package-features">
+                    <li>ทุกอย่างใน Basic Package</li>
+                    <li>การสร้างภาพด้วย Midjourney</li>
+                    <li>การใช้ Comfy UI ขั้นสูง</li>
+                    <li>เทคนิค Prompt Engineering</li>
+                    <li>การ Upscale & Enhance ภาพ</li>
+                </ul>
+                <div class="bonus">
+                    🎁 แถมฟรี! เทคนิค Gen clip ที่ทำให้ราคาถูกกว่าทั่วไป
+                </div>
+            </div>
+
+            <!-- Master Package -->
+            <div class="package-card">
+                <h3 class="package-title">🚀 Master Package</h3>
+                <p class="package-price">฿4,999</p>
+                <ul class="package-features">
+                    <li>ทุกอย่างใน Pro Package</li>
+                    <li>การทำเพลงด้วย AI 100%</li>
+                    <li>การ Mix & Master เสียง</li>
+                    <li>การสร้าง Music Video</li>
+                    <li>การทำ Voice Clone</li>
+                    <li>Bonus Content ทุกเดือน</li>
+                </ul>
+                <div class="bonus">
+                    🎁 แถมฟรี! เทคนิค Gen clip + Template พร้อมใช้
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Section -->
+    <section class="tools-section">
+        <div class="section-header">
+            <h2 class="section-title">AI Tools ที่จะได้เรียน</h2>
+            <p>เครื่องมือชั้นนำที่ใช้ในวงการจริง</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-badge">🤖 ChatGPT</div>
+            <div class="tool-badge">🎨 Midjourney</div>
+            <div class="tool-badge">🖼️ Comfy UI</div>
+            <div class="tool-badge">🎬 Veo 3</div>
+            <div class="tool-badge">🎥 Kling AI</div>
+            <div class="tool-badge">✂️ CapCut</div>
+            <div class="tool-badge">🎵 AI Music Tools</div>
+            <div class="tool-badge">🎙️ Voice AI</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2 class="section-title">พร้อมเริ่มต้นแล้วใช่ไหม?</h2>
+        <p>ติดต่อครูฟิล์มได้ทันที เรียนแบบ 1:1 เข้าใจง่าย ถามได้ทุกเรื่อง</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📱 LINE: @social24</span>
+            </div>
+            <div class="contact-item">
+                <span>📞 โทร: 094-896-1436</span>
+            </div>
+            <div class="contact-item">
+                <span>👨‍🏫 ครูฟิล์ม (Bancha Wungsra)</span>
+            </div>
+        </div>
+
+        <a href="https://line.me/ti/p/@social24" class="cta-button" target="_blank">
+            สมัครเรียนทันที 🚀
+        </a>
+    </section>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            document.body.appendChild(particlesContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.package-card, .tools-section, .contact').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Initialize particles on load
+        window.addEventListener('load', createParticles);
+
+        // Add hover effect to package cards
+        document.querySelectorAll('.package-card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                this.style.setProperty('--mouse-x', `${x}px`);
+                this.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Dynamic text effect
+        const dynamicTexts = ['วิดีโอ', 'รูปภาพ', 'เพลง', 'พากย์เสียง'];
+        let currentIndex = 0;
+        
+        function rotateText() {
+            const subtitle = document.querySelector('.subtitle');
+            if (subtitle) {
+                const parts = subtitle.innerHTML.split('•');
+                if (parts.length > 1) {
+                    parts[currentIndex] = `<span style="color: #667eea; font-weight: bold;"> ${dynamicTexts[currentIndex]} </span>`;
+                    subtitle.innerHTML = parts.join('•');
+                    currentIndex = (currentIndex + 1) % dynamicTexts.length;
+                }
+            }
+        }
+        
+        setInterval(rotateText, 2000);
+    </script>
+</body>
+</html>
